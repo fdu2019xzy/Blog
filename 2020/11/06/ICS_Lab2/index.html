@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Xzy">
   <meta name="keywords" content="">
-  <title>ICS_Lab2 二进制炸弹 - Xavier&#39;s Blog</title>
+  <title>ICS-Lab2 二进制炸弹 - Xavier&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ICS_Lab2 二进制炸弹">
+            <span class="h2" id="subtitle" title="ICS-Lab2 二进制炸弹">
               
             </span>
 
@@ -224,14 +224,14 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ICS_Lab2 二进制炸弹</h1>
+            <h1 style="display: none">ICS-Lab2 二进制炸弹</h1>
             
             <div class="markdown-body">
               <h1 id="ICS-Lab2-Bomb"><a href="#ICS-Lab2-Bomb" class="headerlink" title="ICS-Lab2-Bomb"></a>ICS-Lab2-Bomb</h1><blockquote>
 <p>这个是CS:APP的第二个lab，主要着重于汇编代码的阅读</p>
 </blockquote>
 <hr>
-<h2 id="完成截图"><a href="#完成截图" class="headerlink" title="完成截图"></a>完成截图</h2><p><img src="/img/post3/upload_244e1f55d2823d58f65eabab9478d7ce.png" srcset="/CsBlog/img/loading.gif"></p>
+<h2 id="完成截图"><a href="#完成截图" class="headerlink" title="完成截图"></a>完成截图</h2><p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_244e1f55d2823d58f65eabab9478d7ce.png" srcset="/CsBlog/img/loading.gif"></p>
 <hr>
 <h2 id="Phase-1-入门"><a href="#Phase-1-入门" class="headerlink" title="Phase 1 - 入门"></a>Phase 1 - 入门</h2><h3 id="一、分析"><a href="#一、分析" class="headerlink" title="一、分析"></a>一、分析</h3><blockquote>
 <p>练手入门题，用esi寄存器储存答案地址 (一个立即数)</p>
@@ -245,7 +245,7 @@
 <h3 id="二、gdb调试"><a href="#二、gdb调试" class="headerlink" title="二、gdb调试"></a>二、gdb调试</h3><blockquote>
 <p>看一下内存地址里面存了什么，获得flag</p>
 </blockquote>
-<p><img src="/img/post3/upload_4801c7e177c56f6e7299c273d0120988.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_4801c7e177c56f6e7299c273d0120988.png" srcset="/CsBlog/img/loading.gif"></p>
 <ul>
 <li><strong>答案</strong>: Border relations with Canada have never been better.</li>
 </ul>
@@ -266,7 +266,7 @@
 <li>信息2 : 第一个数为1</li>
 </ul>
 <p>下面进入Loop Body</p>
-<p><img src="/img/post3/upload_27148224f8cf2be48266eaa52f50b2f8.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_27148224f8cf2be48266eaa52f50b2f8.png" srcset="/CsBlog/img/loading.gif"></p>
 <ul>
 <li>信息3 :<br>可以看到这个循环把前一个数乘了2，跟后一个数比较, 如果相等就能够继续，不然就炸了。</li>
 </ul>
@@ -295,7 +295,7 @@
 <blockquote>
 <p>最关键的是这一句，构造了一个 switch 的 jumptable，我们知道地址是 0x402470，按照 case * 8 + 0x402470 跳转到该地址里面的地址，所以我们用gdb看一下。</p>
 </blockquote>
-<p><img src="/img/post3/upload_ae5e359c30ff5ccb9292a7472c39eb19.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_ae5e359c30ff5ccb9292a7472c39eb19.png" srcset="/CsBlog/img/loading.gif"></p>
 <ul>
 <li><p>我通关选了case 1（它比较特殊，处理它其他内存地址跳转都是按case从小到大顺序的，只有case 1 在最后一个，当然其他也都能过。）</p>
 </li>
@@ -412,7 +412,7 @@ cmp    $<span class="hljs-number">0x6</span>,%eax # 比较 eax 和 <span class="
 <ul>
 <li>往下看，发现了一个 Loop 循环了6次</li>
 </ul>
-<p><img src="/img/post3/upload_016df1440f7044a54fb4ced529595b58.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_016df1440f7044a54fb4ced529595b58.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
 <p>经过仔细阅读后，发现这个居然是遍历六个输入字符，将其 ascii 码低4位取出来作为偏移量 (offset),在一个基地址 （0x4024b0）后面取字符出来组成 flyers.</p>
 </blockquote>
@@ -432,12 +432,12 @@ cmp    $<span class="hljs-number">0x6</span>,%eax # 比较 eax 和 <span class="
 </blockquote>
 </li>
 </ul>
-<p><img src="/img/post3/upload_7194e52688ff3d696a3b889e2b17d63f.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_7194e52688ff3d696a3b889e2b17d63f.png" srcset="/CsBlog/img/loading.gif"></p>
 <p>这段代码遍历了所有输入并用7减去了输入的每个数，所以最后做出答案要记得反一下。</p>
 <ul>
 <li>接下来代码比较复杂，外面大循环循环了六次，内部有两个平行的小循环。作用是构造结构体，并在栈帧中将其存放位置按照输入的数的大小计算得出</li>
 </ul>
-<p><img src="/img/post3/upload_9ea5cd30293a18357af1da93c35e0f59.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_9ea5cd30293a18357af1da93c35e0f59.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
 <p>分析代码，我们先发现一种特殊情况就是当前计算的数为1时（输入为6）edx直接就是给定的地址 0x6032d0, 其余的都按照其大小，在第一个小循环中循环相应次数，给 rdx 在原地址上相应偏移16位。</p>
 </blockquote>
@@ -447,9 +447,9 @@ cmp    $<span class="hljs-number">0x6</span>,%eax # 比较 eax 和 <span class="
 <ul>
 <li>使用 gdb 查看 node</li>
 </ul>
-<p><img src="/img/post3/upload_f2ecdd05728cbefbba59b068a29fdfdc.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_f2ecdd05728cbefbba59b068a29fdfdc.png" srcset="/CsBlog/img/loading.gif"></p>
 <p>最后我们看如何通关</p>
-<p><img src="/img/post3/upload_a18a67d1b4dbfa16a7fd8800e3ee304b.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_a18a67d1b4dbfa16a7fd8800e3ee304b.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
 <p>发现通关条件是要求定序，前面node大于后面的节点，根据gdb node节点的值和要求我们得到了 3 4 5 6 1 2 的结果，最后不要忘记这是被7减过之后的结果，原来的输入要还原。所以答案就是 4 3 2 1 6 5</p>
 </blockquote>
@@ -459,7 +459,7 @@ cmp    $<span class="hljs-number">0x6</span>,%eax # 比较 eax 和 <span class="
 <li>输入上面六种答案之后，发现 secret phase 并没有出现，于是开始着手寻找入口。</li>
 </ul>
 <blockquote>
-<p>根据最后结果出现的字符顺藤摸瓜找到了 phase_defuse 函数，一看发现其中有一个可疑的 <string_not_equal> 函数以及几个可疑的内存地址,统统用 gdb 打印。</p>
+<p>根据最后结果出现的字符顺藤摸瓜找到了 phase_defuse 函数，一看发现其中有一个可疑的 <string_not_equal> 函数以及几个可疑的内存地址,统统用 gdb 打印。</string_not_equal></p>
 </blockquote>
 <pre><code class="hljs perl">(gdb) p(char*) <span class="hljs-number">0x402619</span>
 $2 = <span class="hljs-number">0x402619</span> <span class="hljs-string">&quot;%d %d %s&quot;</span></code></pre>
@@ -505,7 +505,7 @@ callq  <span class="hljs-number">400</span>bd0 &lt;<span class="hljs-symbol">str
 <ul>
 <li>再来看fun7</li>
 </ul>
-<p><img src="/img/post3/upload_64ed470376ec6b72dc43690bf9b4ea0e.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_64ed470376ec6b72dc43690bf9b4ea0e.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
 <p>一看这个递归是逃不过了，但我们要让eax == 2, 路线其实非常明确，第一次先走 way3 将 eax 弄成1，再走 way1 让eax*2， 最后一层我们让eax == 0 最后返回我们得到的 eax 就等于2<br><em>（eax = 0 -&gt; 1 -&gt; 2）</em></p>
 </blockquote>
@@ -513,7 +513,7 @@ callq  <span class="hljs-number">400</span>bd0 &lt;<span class="hljs-symbol">str
 <p>关键是一个 edx 和 esi 的比较，edx == rdi, 然后每次改变rdi使其中储存地址中所储存的变量逐步接近 esi 完成递归操作。</p>
 </blockquote>
 <p>根据所存地址(注意/d打出的是10进制)，可以很容易找出递归路径</p>
-<p>![](/img/post3/upload_dfddd1801cd10c701dd2753164434977.png style=”width:65%”)</p>
+<p><img src="https://codimd.s3.shivering-isles.com/demo/uploads/upload_dfddd1801cd10c701dd2753164434977.png" srcset="/CsBlog/img/loading.gif" style="width:65%"></p>
 <ul>
 <li>输入22可以正好满足需求<blockquote>
 <p><strong>22 &lt;= 36 因而 rdi = (rdi + 8) (存8)，22 &gt; 8 因而 rdi = = (rdi + 16) (存22), 22==22 所以 eax 返回 0 ，返回 1， 返回2，最终过关</strong></p>
@@ -556,7 +556,7 @@ callq  <span class="hljs-number">400</span>bd0 &lt;<span class="hljs-symbol">str
                     
                     
                       <a href="/CsBlog/2020/11/05/ICS_Lab1/">
-                        <span class="hidden-mobile">ICS_Lab1 位运算</span>
+                        <span class="hidden-mobile">ICS-Lab1 位运算</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -575,8 +575,8 @@ callq  <span class="hljs-number">400</span>bd0 &lt;<span class="hljs-symbol">str
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/11/06/ICS-Lab2/';
-        this.page.identifier = '/CsBlog/2020/11/06/ICS-Lab2/';
+        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/11/06/ICS_Lab2/';
+        this.page.identifier = '/CsBlog/2020/11/06/ICS_Lab2/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');
