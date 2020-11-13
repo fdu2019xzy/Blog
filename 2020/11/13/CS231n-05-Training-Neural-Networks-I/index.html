@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Xzy">
   <meta name="keywords" content="">
-  <title>CS231n Convolutional_Neural_Networks 04 - Xavier&#39;s Blog</title>
+  <title>CS231n Training Neural Networks I 05 - Xavier&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="CS231n Convolutional_Neural_Networks 04">
+            <span class="h2" id="subtitle" title="CS231n Training Neural Networks I 05">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-11 00:57" pubdate>
-        2020年11月11日 凌晨
+      <time datetime="2020-11-13 21:09" pubdate>
+        2020年11月13日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      288 字
+      481 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      9
        分钟
     </span>
   
@@ -224,100 +224,191 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CS231n Convolutional_Neural_Networks 04</h1>
+            <h1 style="display: none">CS231n Training Neural Networks I 05</h1>
             
             <div class="markdown-body">
-              <h3 id="A-bit-of-CNN-History"><a href="#A-bit-of-CNN-History" class="headerlink" title="A bit of CNN History"></a>A bit of CNN History</h3><p><img src="https://s1.ax1x.com/2020/11/11/BOGJ5n.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGGUs.png" srcset="/CsBlog/img/loading.gif"></p>
-<h4 id="Fully-Connected-Layer"><a href="#Fully-Connected-Layer" class="headerlink" title="Fully Connected Layer"></a>Fully Connected Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOGlDg.png" srcset="/CsBlog/img/loading.gif"></p>
-<h4 id="Convolution-Layer"><a href="#Convolution-Layer" class="headerlink" title="Convolution Layer"></a>Convolution Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOG1bQ.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>We just let the 5x5x3 filter $w$ to take a dot product between itself and a small 5x5z3 chunck of the image</p>
-</blockquote>
-<p>$$W^Tx+b$$<br><strong>The $W$ and $x$ is streched into 1 dimention vec</strong></p>
-<ul>
-<li>Then the Outcome:</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG8Ej.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>We can use different layers on the top of it and get more activation maps stack them together to get a new image, just as the following pic depicted.</p>
-</blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGtCq.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>Then we can recursively do that work, make the front layer’s output be the next layer’s input</p>
-</blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGU2V.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><strong>The Layers may look like..</strong><br><em>Simple -&gt; Complex</em></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGN80.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGrVJ.png" srcset="/CsBlog/img/loading.gif"></p>
-<ul>
-<li>The Convolution of two signals:</li>
-</ul>
-<p>$$f[x,y]*g[x,y] = \sum\limits_{n_1 = -\infin}^{\infin}\sum\limits_{n_2 = -\infin}^{\infin}f[n_1,n_2]·g[x-n_1,y-n_2]$$</p>
-<ul>
-<li>A little bit preview</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG0rF.png" srcset="/CsBlog/img/loading.gif"></p>
-<hr>
-<ul>
-<li>Convolution Box</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGwKU.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>We can tell that the activation maps are becomming smaller after the filter, so we commonly use zero pad to deal with it.</p>
-</blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGBb4.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGsa9.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>The Matrix shrinks from 32 —&gt; 28 -&gt; 24 (lose info)</p>
-</blockquote>
-<hr>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ol>
-<li>Accepts a volume of size $W_1 * H_1 * D_1$</li>
-<li>Four Hyperparas<ul>
-<li>Number of filters $K$</li>
-<li>spatial extent $F$</li>
-<li>stride $S$</li>
-<li>zero padding amount $P$</li>
-</ul>
-</li>
-<li>Produces a volume of size $W_2 * H_2 * D_2$<ul>
-<li>$W_2 = (W_1 - F + 2P)/S + 1$</li>
-<li>$H_2 = (H_1 - F + 2P)/S + 1$</li>
-<li>$D_2 = K$ <em>Depth keeps the same</em></li>
-</ul>
-</li>
+              <h3 id="OverView"><a href="#OverView" class="headerlink" title="OverView"></a>OverView</h3><ol>
+<li>One time setup</li>
+<li>Training dynamics</li>
+<li>Evaluation</li>
 </ol>
-<h4 id="Common-Settings"><a href="#Common-Settings" class="headerlink" title="Common Settings"></a>Common Settings</h4><p>K = (powers of 2)</p>
-<ul>
-<li>F = 3, S = 1, P =1</li>
-<li>F = 5, S = 1, P =2</li>
-<li>F = 1, S = 1, P = 0 </li>
+<h3 id="Part-1"><a href="#Part-1" class="headerlink" title="Part 1"></a>Part 1</h3><ul>
+<li>Activation Functions</li>
+<li>Data Preprocessing</li>
+<li>Weight initialization</li>
+<li>Batch Normalization</li>
+<li>Babysitting the Learning Process</li>
+<li>Hyperparameter Optimization</li>
 </ul>
 <hr>
-<h3 id="Conv-details"><a href="#Conv-details" class="headerlink" title="Conv details"></a>Conv details</h3><ul>
-<li>One by One CONV</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGy5R.png" srcset="/CsBlog/img/loading.gif"></p>
+<h3 id="Activation-Functions"><a href="#Activation-Functions" class="headerlink" title="Activation Functions"></a>Activation Functions</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9uofs.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9uIYj.png" srcset="/CsBlog/img/loading.gif"></p>
+<h4 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h4><p>$$\sigma(x) = 1/(1+e^{-x})$$</p>
 <ul>
-<li>EXAMPLE: CONV in pyTorch</li>
+<li>Squashes numbers to range [0,1]</li>
+<li>Historically popular “firing rate” of a neuron</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGRxK.png" srcset="/CsBlog/img/loading.gif"></p>
-<ul>
-<li>The Brain/Neuron View of CONV</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG226.png" srcset="/CsBlog/img/loading.gif"></p>
-<ul>
-<li>Pooling layer</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGg8x.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9uhTg.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><strong>3 Problems</strong></p>
+<ol>
+<li>Saturated the neural may kill the gradient.</li>
+</ol>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9u5kQ.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>Just spacially down sample the image to make it smaller.<br>Common Practice is Max Pooling</p>
+<p>x is a very negative and very positive val, its gradient will be killed to zero</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGcP1.png" srcset="/CsBlog/img/loading.gif"></p>
+<ol>
+<li>Sigmoid outputs are not zero-centered</li>
+</ol>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9u7pn.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>We may can just use stride to replace pooling?</p>
+<p>For the sign of x and gradient is always the same, it gonna behaves like is above pic.</p>
 </blockquote>
+<blockquote>
+<p>thats why we need zero-mean data, to optimize the w just through the zig zag path.</p>
+</blockquote>
+<ol>
+<li>exp() is a bit compute expensive</li>
+</ol>
+<hr>
+<h4 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h4><ul>
+<li>Squashes numbers to range [-1, 1]</li>
+<li>zero centered (nice)</li>
+<li>still kills gradients when saturated</li>
+</ul>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9uHlq.png" srcset="/CsBlog/img/loading.gif"></p>
+<hr>
+<h4 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h4><p>$$f(x) = max(0, x)$$</p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9ub60.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>Does not saturate (in + region)</li>
+<li>Very computationally efficient</li>
+<li>Converges much faster than sigmoid/tanh in practice</li>
+<li>Actually more biologically plausible than sigmoid</li>
+</ul>
+<p><strong>Problems</strong></p>
+<ol>
+<li>Not zero-centered output</li>
+<li>An annoyance:</li>
+<li>when x &lt;= 0 the gradient is slashed to zero (kill half the gradient)</li>
+</ol>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9uX0U.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>Bad Init</li>
+<li>Learning rate too high</li>
+</ul>
+<blockquote>
+<p>people like to initialize ReLU neurons with slightly positive biases (eg 0.01), to increase the possibility that being activated.</p>
+</blockquote>
+<hr>
+<h4 id="Leaky-ReLu"><a href="#Leaky-ReLu" class="headerlink" title="Leaky ReLu"></a>Leaky ReLu</h4><p>$$f(x) = max(0.01x,x)$$</p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9uqXV.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>Does not saturated</li>
+<li>Computationally efficient</li>
+<li>Converges much faster …</li>
+<li><strong>will not die</strong></li>
+</ul>
+<p>or <strong>Para Rectifier ReLu</strong></p>
+<p>$$f(x) = max(\alpha{x},x)$$</p>
+<hr>
+<h4 id="Exponential-Linear-Units-ELU"><a href="#Exponential-Linear-Units-ELU" class="headerlink" title="Exponential Linear Units (ELU)"></a>Exponential Linear Units (ELU)</h4><p><img src="https://s3.ax1x.com/2020/11/13/D9uOmT.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>All benefits of ReLU</li>
+<li>Closer to zero mean outputs</li>
+<li>Negative saturation regime adds some robustness to noise</li>
+</ul>
+<p><em>While it requires exp()</em></p>
+<hr>
+<h4 id="Maxout-“Neuron”"><a href="#Maxout-“Neuron”" class="headerlink" title="Maxout “Neuron”"></a>Maxout “Neuron”</h4><p><img src="https://s3.ax1x.com/2020/11/13/D9uj7F.png" srcset="/CsBlog/img/loading.gif"></p>
+<hr>
+<h4 id="In-practice"><a href="#In-practice" class="headerlink" title="In practice"></a>In practice</h4><ul>
+<li>Use ReLU. (zbe careful with learning rates)</li>
+<li>Try Leaky <em>ReLU / Maxout / ELU</em></li>
+<li>Don’t use sigmoid</li>
+</ul>
+<hr>
+<h3 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h3><h4 id="Step1-Preprocess-the-data"><a href="#Step1-Preprocess-the-data" class="headerlink" title="Step1: Preprocess the data"></a>Step1: Preprocess the data</h4><p><img src="https://s3.ax1x.com/2020/11/13/D9uxk4.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>In CV we usually don’t normalize the data.</li>
+</ul>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KSh9.png" srcset="/CsBlog/img/loading.gif"></p>
+<p>Practice above make the data zero-mean, but only the first layer, and that’s why we need the activation func tobe zero-mean.</p>
+<hr>
+<h3 id="Weight-Initialization"><a href="#Weight-Initialization" class="headerlink" title="Weight Initialization"></a>Weight Initialization</h3><h4 id="First-idea-Small-random-numbers"><a href="#First-idea-Small-random-numbers" class="headerlink" title="First idea: Small random numbers"></a>First idea: Small random numbers</h4><pre><code class="hljs python">W = <span class="hljs-number">0.01</span>* np.random.randn(D,H)</code></pre>
+
+<blockquote>
+<p>Works Okay for small, but have problems in big one.</p>
+</blockquote>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KC11.png" srcset="/CsBlog/img/loading.gif"></p>
+<h4 id="How-about-making-Weight-big"><a href="#How-about-making-Weight-big" class="headerlink" title="How about making Weight big?"></a>How about making Weight big?</h4><p><img src="https://s3.ax1x.com/2020/11/13/D9KP6x.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>it gonna saturated the regime to be either very possitive or very negative input of tanh, and comes out near zero gradients. The weight will not be updated.</p>
+</blockquote>
+<h4 id="Xavier-initialization"><a href="#Xavier-initialization" class="headerlink" title="Xavier initialization"></a>Xavier initialization</h4><p><em>Woo my initialzation? haha</em></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KiX6.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>ensure we are at the active region of tanh</p>
+</blockquote>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KA0O.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>Can be addressed by add an extra /2， to ensure the neural won’t die in ReLU</p>
+</blockquote>
+<hr>
+<h3 id="Batch-Normalization"><a href="#Batch-Normalization" class="headerlink" title="Batch Normalization"></a>Batch Normalization</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9KknK.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>To regulize the input tobe unit gaussian.</p>
+</blockquote>
+<p><em>I have no idea about it. What is unit gaussian?</em></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KetH.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KE7D.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KZAe.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9Kmhd.png" srcset="/CsBlog/img/loading.gif"></p>
+<hr>
+<h3 id="Babysitting-the-Learning-Process"><a href="#Babysitting-the-Learning-Process" class="headerlink" title="Babysitting the Learning Process"></a>Babysitting the Learning Process</h3><ul>
+<li><ol>
+<li>Preprocess data</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>Choose the architecture:</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Double check that the loss is reasonable</li>
+</ol>
+</li>
+</ul>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KK1I.png" srcset="/CsBlog/img/loading.gif"></p>
+<h4 id="The-Learning-Rate"><a href="#The-Learning-Rate" class="headerlink" title="The Learning Rate"></a>The Learning Rate</h4><ul>
+<li>Very small learning rate 1e-6<blockquote>
+<p>litter help</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9K3B8.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>Very great learning rate 1e6<blockquote>
+<p>go extreme</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KQjP.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>A Rough Range</li>
+</ul>
+<p>$$1\times{10}^{-3} \to 1\times{10}^{-5} $$</p>
+<hr>
+<h3 id="Hyperparameter-Optimization"><a href="#Hyperparameter-Optimization" class="headerlink" title="Hyperparameter Optimization"></a>Hyperparameter Optimization</h3><ul>
+<li>Cross-validation strategy</li>
+</ul>
+<p><em>coarse -&gt; fine</em></p>
+<ul>
+<li>Random Sample</li>
+</ul>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9Ku9A.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9KMct.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9K1nf.png" srcset="/CsBlog/img/loading.gif"></p>
 
             </div>
             <hr>
@@ -350,9 +441,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/CsBlog/2020/11/13/CS231n-05-Training-Neural-Networks-I/">
+                      <a href="/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CS231n Training Neural Networks I 05</span>
+                        <span class="hidden-mobile">CS231n Training Neural Networks II 06</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -360,8 +451,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/CsBlog/2020/11/10/CS231n-03-Introduction-to-Convolutional-neural-network/">
-                        <span class="hidden-mobile">CS231n Introduction to Convolutional neural network 03</span>
+                      <a href="/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/">
+                        <span class="hidden-mobile">CS231n Convolutional_Neural_Networks 04</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -380,8 +471,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/';
-        this.page.identifier = '/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/';
+        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/11/13/CS231n-05-Training-Neural-Networks-I/';
+        this.page.identifier = '/CsBlog/2020/11/13/CS231n-05-Training-Neural-Networks-I/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');

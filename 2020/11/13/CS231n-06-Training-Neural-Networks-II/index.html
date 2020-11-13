@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Xzy">
   <meta name="keywords" content="">
-  <title>CS231n Convolutional_Neural_Networks 04 - Xavier&#39;s Blog</title>
+  <title>CS231n Training Neural Networks II 06 - Xavier&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="CS231n Convolutional_Neural_Networks 04">
+            <span class="h2" id="subtitle" title="CS231n Training Neural Networks II 06">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-11 00:57" pubdate>
-        2020年11月11日 凌晨
+      <time datetime="2020-11-13 21:11" pubdate>
+        2020年11月13日 晚上
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      288 字
+      529 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      10
        分钟
     </span>
   
@@ -224,100 +224,163 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CS231n Convolutional_Neural_Networks 04</h1>
+            <h1 style="display: none">CS231n Training Neural Networks II 06</h1>
             
             <div class="markdown-body">
-              <h3 id="A-bit-of-CNN-History"><a href="#A-bit-of-CNN-History" class="headerlink" title="A bit of CNN History"></a>A bit of CNN History</h3><p><img src="https://s1.ax1x.com/2020/11/11/BOGJ5n.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGGUs.png" srcset="/CsBlog/img/loading.gif"></p>
-<h4 id="Fully-Connected-Layer"><a href="#Fully-Connected-Layer" class="headerlink" title="Fully Connected Layer"></a>Fully Connected Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOGlDg.png" srcset="/CsBlog/img/loading.gif"></p>
-<h4 id="Convolution-Layer"><a href="#Convolution-Layer" class="headerlink" title="Convolution Layer"></a>Convolution Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOG1bQ.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>We just let the 5x5x3 filter $w$ to take a dot product between itself and a small 5x5z3 chunck of the image</p>
-</blockquote>
-<p>$$W^Tx+b$$<br><strong>The $W$ and $x$ is streched into 1 dimention vec</strong></p>
-<ul>
-<li>Then the Outcome:</li>
+              <h3 id="PreView"><a href="#PreView" class="headerlink" title="PreView"></a>PreView</h3><ul>
+<li>Fancier optimization</li>
+<li>Regularization</li>
+<li>Transfer Learning</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG8Ej.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>We can use different layers on the top of it and get more activation maps stack them together to get a new image, just as the following pic depicted.</p>
-</blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGtCq.png" srcset="/CsBlog/img/loading.gif"></p>
-<blockquote>
-<p>Then we can recursively do that work, make the front layer’s output be the next layer’s input</p>
-</blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGU2V.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><strong>The Layers may look like..</strong><br><em>Simple -&gt; Complex</em></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGN80.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGrVJ.png" srcset="/CsBlog/img/loading.gif"></p>
-<ul>
-<li>The Convolution of two signals:</li>
-</ul>
-<p>$$f[x,y]*g[x,y] = \sum\limits_{n_1 = -\infin}^{\infin}\sum\limits_{n_2 = -\infin}^{\infin}f[n_1,n_2]·g[x-n_1,y-n_2]$$</p>
-<ul>
-<li>A little bit preview</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG0rF.png" srcset="/CsBlog/img/loading.gif"></p>
 <hr>
-<ul>
-<li>Convolution Box</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGwKU.png" srcset="/CsBlog/img/loading.gif"></p>
+<h3 id="Problem-with-SGD"><a href="#Problem-with-SGD" class="headerlink" title="Problem with SGD"></a>Problem with SGD</h3><p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-140755@2x.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>We can tell that the activation maps are becomming smaller after the filter, so we commonly use zero pad to deal with it.</p>
+<p>The zig-zag path reveal the drawbacks of SGD</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGBb4.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGsa9.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-141348@2x.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>The Matrix shrinks from 32 —&gt; 28 -&gt; 24 (lose info)</p>
+<p>Stuck in the local minima.</p>
+</blockquote>
+<ul>
+<li>Saddle points much more common in high dimension.</li>
+</ul>
+<p><strong>Add an Momentum term may solve these problems</strong></p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-141916@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-143327@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>Owing to the exsistance of momentum we can training more faster and overcome the problems mentioned before.</p>
+</blockquote>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-144012@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li><strong>Nesterov Momentum</strong></li>
+</ul>
+<p>$$v_{t+1} = \rho{v_t}-\alpha{\nabla{f(x_t+\rho{v_t})}}<br>\<br>x_{t+1} = x_t + v_{t+1}<br>$$</p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-144825@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>some kind error correcting term of present v and the previous v</p>
+</blockquote>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-145046@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<hr>
+<h3 id="AdaGrad"><a href="#AdaGrad" class="headerlink" title="AdaGrad"></a>AdaGrad</h3><pre><code class="hljs python">grad_squared = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    dx = compute_gradient(x)
+    grad_squared += dx * dx
+    x -= learning_rate * dx / (np.sqrt(grad_squared) + <span class="hljs-number">1e-7</span>)</code></pre>
+
+<blockquote>
+<p>The basic idea about AdaGrad algorithm is that the step of dimention with smaller gradients will be divided by small vals and make it move faster, while greater one slower to avoid zig-zag behavior.</p>
+</blockquote>
+<blockquote>
+<p>while the step will become smaller and smaller while you get closer to the minima, but in turn with higher risks to stuck in the local minima.</p>
 </blockquote>
 <hr>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ol>
-<li>Accepts a volume of size $W_1 * H_1 * D_1$</li>
-<li>Four Hyperparas<ul>
-<li>Number of filters $K$</li>
-<li>spatial extent $F$</li>
-<li>stride $S$</li>
-<li>zero padding amount $P$</li>
+<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-150151@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>With a decay rate to make a smooth stop the reducing of steps.</p>
+</blockquote>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-150451@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<hr>
+<h3 id="Adam-almost"><a href="#Adam-almost" class="headerlink" title="Adam (almost)"></a>Adam (almost)</h3><pre><code class="hljs python">first_moment = <span class="hljs-number">0</span>
+second_moment = <span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    dx = compute_gradient(x)
+    first_moment = beta1 + first_moment + (<span class="hljs-number">1</span> - beta1) * dx
+    <span class="hljs-comment"># Momentum</span>
+    second_moment = beta2 * second_moment + (<span class="hljs-number">1</span> - beta2) * dx * dx
+    <span class="hljs-comment"># AdaGrad / RMSProp</span>
+    x -= learning_rate * first_moment / (np.sqrt(second_moment) + <span class="hljs-number">1e-7</span>)</code></pre>
+
+<blockquote>
+<p>It combine the two methods, but with a little bug of the first step, which gonna be super large.</p>
+</blockquote>
+<h3 id="Adam-full-form"><a href="#Adam-full-form" class="headerlink" title="Adam (full form)"></a>Adam (full form)</h3><pre><code class="hljs python">first_moment = <span class="hljs-number">0</span>
+second_moment = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_iterations):
+    dx = compute_gradient(x)
+    first_moment = beta1 + first_moment + (<span class="hljs-number">1</span> - beta1) * dx
+    <span class="hljs-comment"># Momentum</span>
+    second_moment = beta2 * second_moment + (<span class="hljs-number">1</span> - beta2) * dx * dx
+    <span class="hljs-comment"># AdaGrad / RMSProp</span>
+    first_unbias = first_moment / (<span class="hljs-number">1</span> - beta1 ** t)
+    second_unbias = second_moment / (<span class="hljs-number">1</span> - beta2 ** t)
+    x -= learning_rate * first_unbias / (np.sqrt(second_unbias) + <span class="hljs-number">1e-7</span>)</code></pre>
+
+<blockquote>
+<p>Bias correction for the fact that first and second moment estimates start at zero</p>
+</blockquote>
+<ul>
+<li>Great starting point</li>
 </ul>
-</li>
-<li>Produces a volume of size $W_2 * H_2 * D_2$<ul>
-<li>$W_2 = (W_1 - F + 2P)/S + 1$</li>
-<li>$H_2 = (H_1 - F + 2P)/S + 1$</li>
-<li>$D_2 = K$ <em>Depth keeps the same</em></li>
-</ul>
-</li>
+<ol>
+<li>beta1 = 0.9</li>
+<li>beta2 = 0.999</li>
+<li>learning_rate = 1e-3 or 5e-4</li>
 </ol>
-<h4 id="Common-Settings"><a href="#Common-Settings" class="headerlink" title="Common Settings"></a>Common Settings</h4><p>K = (powers of 2)</p>
-<ul>
-<li>F = 3, S = 1, P =1</li>
-<li>F = 5, S = 1, P =2</li>
-<li>F = 1, S = 1, P = 0 </li>
+<hr>
+<h3 id="Decay-the-learning-rate-to-make-it-finer"><a href="#Decay-the-learning-rate-to-make-it-finer" class="headerlink" title="Decay the learning rate to make it finer"></a>Decay the learning rate to make it finer</h3><p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-152835@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-153113@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<hr>
+<h3 id="little-bit-Fancier-Optimization"><a href="#little-bit-Fancier-Optimization" class="headerlink" title="little bit Fancier Optimization"></a>little bit Fancier Optimization</h3><p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-153333@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>First derivative optimization</p>
+</blockquote>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-153438@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>Second derivative optimization, direct to the mini</p>
+</blockquote>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-153508@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<blockquote>
+<p>Don’t need learning rate, but impractical for Hessian has O(N^2) elements and Inverting takes O(N^3)</p>
+</blockquote>
+<h4 id="Quasi-Newton-methods-BGFS"><a href="#Quasi-Newton-methods-BGFS" class="headerlink" title="Quasi - Newton methods (BGFS)"></a>Quasi - Newton methods (BGFS)</h4><p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-153812@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-153846@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<hr>
+<h3 id="In-Practice"><a href="#In-Practice" class="headerlink" title="In Practice:"></a>In Practice:</h3><ul>
+<li>Using Adam</li>
+<li>If full batch updates can be afforded, try out <strong>L-BFGS</strong></li>
 </ul>
 <hr>
-<h3 id="Conv-details"><a href="#Conv-details" class="headerlink" title="Conv details"></a>Conv details</h3><ul>
-<li>One by One CONV</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGy5R.png" srcset="/CsBlog/img/loading.gif"></p>
-<ul>
-<li>EXAMPLE: CONV in pyTorch</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGRxK.png" srcset="/CsBlog/img/loading.gif"></p>
-<ul>
-<li>The Brain/Neuron View of CONV</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG226.png" srcset="/CsBlog/img/loading.gif"></p>
-<ul>
-<li>Pooling layer</li>
-</ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGg8x.png" srcset="/CsBlog/img/loading.gif"></p>
+<h3 id="Reduce-the-gap-between-train-and-unseen-data"><a href="#Reduce-the-gap-between-train-and-unseen-data" class="headerlink" title="Reduce the gap between train and unseen data"></a>Reduce the gap between train and unseen data</h3><h4 id="Model-Ensembles"><a href="#Model-Ensembles" class="headerlink" title="Model Ensembles"></a>Model Ensembles</h4><ol>
+<li>Train multiple independent models</li>
+<li>At test time average their results</li>
+</ol>
+<p>2% improvement maybe</p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-165121@2x.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>Just spacially down sample the image to make it smaller.<br>Common Practice is Max Pooling</p>
+<p>Instead of using actual parameter vector, keep a moving average of the para vector and use that at test time</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGcP1.png" srcset="/CsBlog/img/loading.gif"></p>
+<pre><code class="hljs python"><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
+    data_batch = dataset.sample_data_batch()
+    loss = network.forward(data_batch)
+    dx = network.backward()
+    x += - learning_rate * dx
+    x_test = <span class="hljs-number">0.995</span>*x_test + <span class="hljs-number">0.005</span>*x</code></pre>
+
+<h4 id="Regularization-to-make-single-model-performs-better"><a href="#Regularization-to-make-single-model-performs-better" class="headerlink" title="Regularization to make single model performs better"></a>Regularization to make single model performs better</h4><ul>
+<li>Dropout</li>
+</ul>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-203118@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-203430@2x.png" srcset="/CsBlog/img/loading.gif"></p>
 <blockquote>
-<p>We may can just use stride to replace pooling?</p>
+<p>Another interpretation is that you can percive each binary mask as a single model, so it just like dropout is training a large ensemble of models with shared paras.</p>
 </blockquote>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-203819@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-204029@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<h4 id="Batch-Normalization"><a href="#Batch-Normalization" class="headerlink" title="Batch Normalization"></a>Batch Normalization</h4><blockquote>
+<p>Which can achieve the same effect as the Dropout, for it includes some noises.</p>
+</blockquote>
+<h4 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h4><blockquote>
+<p>To introduce noise to make it performs better on unseen data.</p>
+</blockquote>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-204443@2x.png" srcset="/CsBlog/img/loading.gif"></p>
+<h4 id="Stochastic-Depth"><a href="#Stochastic-Depth" class="headerlink" title="Stochastic Depth"></a>Stochastic Depth</h4><blockquote>
+<p>Randomly drop layers during training.<br>Use the full networks during testing.</p>
+</blockquote>
+<hr>
+<h3 id="Transfer-Learning"><a href="#Transfer-Learning" class="headerlink" title="Transfer Learning"></a>Transfer Learning</h3><blockquote>
+<p>There is no need for huge amount of data.</p>
+</blockquote>
+<p><img src="/CsBlog/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/WX20201113-205428@2x.png" srcset="/CsBlog/img/loading.gif"></p>
 
             </div>
             <hr>
@@ -350,18 +413,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/CsBlog/2020/11/13/CS231n-05-Training-Neural-Networks-I/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">CS231n Training Neural Networks I 05</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/CsBlog/2020/11/10/CS231n-03-Introduction-to-Convolutional-neural-network/">
-                        <span class="hidden-mobile">CS231n Introduction to Convolutional neural network 03</span>
+                      <a href="/CsBlog/2020/11/13/CS231n-05-Training-Neural-Networks-I/">
+                        <span class="hidden-mobile">CS231n Training Neural Networks I 05</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -380,8 +437,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/';
-        this.page.identifier = '/CsBlog/2020/11/11/CS231n-04-Convolutional-Neural-Networks/';
+        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/';
+        this.page.identifier = '/CsBlog/2020/11/13/CS231n-06-Training-Neural-Networks-II/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');
