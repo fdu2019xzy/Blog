@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      2.8k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      32
+      35
        分钟
     </span>
   
@@ -403,15 +403,40 @@
 <li>合并两个集合</li>
 <li>查询两个元素是否在同一集合中</li>
 </ol>
-<p>并查集是一种树上的操作，通过根节点直接代表整棵树。</p>
+<p>并查集是一种树上的操作，通过根节点直接代表整棵树，初始化的时候根节点父节点为自身。</p>
 <ul>
 <li>合并操作</li>
 </ul>
-<p>合并操作相对比较简单，由于我们通过根节点来代表这个集合，那么合并两个集合只需要将其中一个的根节点作为另一个的子节点连接上即可。但同时我们要注意整棵树的深度会影响我们的时间复杂度，因而我们要尽可能不加深或是少加深树的深度，所以我们采用将深度较小的树连接到深度较大的树上，每次这样操作，树深度每次至多 +1，这种策略称之为按秩合并（启发式合并）</p>
+<p>合并操作相对比较简单，由于我们通过根节点来代表这个集合，那么合并两个集合只需要将其中一个的根节点作为另一个的子节点连接上即可。但同时我们要注意整棵树的深度会影响我们的时间复杂度，因而我们要尽可能不加深或是少加深树的深度，所以我们采用将深度较小的树连接到深度较大的树上，每次这样操作，树深度每次至多 +1，这种策略称之为<strong>按秩合并（启发式合并）</strong></p>
+<p><img src="https://oi-wiki.org/ds/images/dsu1.png" srcset="/CsBlog/img/loading.gif"></p>
+<ul>
+<li>代码</li>
+</ul>
+<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">unionSet</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">int</span> tmp_x = find(x);
+    <span class="hljs-keyword">int</span> tmp_y = find(y);
+    <span class="hljs-keyword">if</span>(tmp_x == tmp_y)  <span class="hljs-comment">// 本来就在同一集合中</span>
+        <span class="hljs-keyword">return</span>; 
+    <span class="hljs-keyword">if</span>(sz[tmp_x] &gt; sz[tmp_y])
+        swap(tmp_x, tmp_y); <span class="hljs-comment">// 让 tmp_x 是深度小的集合</span>
+    fa[tmp_x] = tmp_y; <span class="hljs-comment">// 将 tmp_x 连接到 tmp_y 上</span>
+&#125;</code></pre>
+
 <ul>
 <li>查询操作</li>
 </ul>
-<p>我们来讲并查集关键的查询操作，</p>
+<p>我们来讲并查集关键的查询操作，并查集的查询操作给出一个节点，我们查询其父节点，如若其父节点不是自身就继续向上查询，直到查询到根节点（父节点为自身）返回根节点作为这个集合的代表。</p>
+<p>我们不难看出这样的查询操作单次是 $O(n)$ 的，原因是我们每次查询都要走完完整的一条链，但是其实我们并不关心该节点的父节点是谁，我们只想知道其根节点是什么。所以我们可以直接让它的父节点直接是根节点，这样虽然在第一次操作的时候，我们还是要走完一条链，但之后该节点的父节点直接就是根节点。这种操作称为<strong>路径压缩</strong></p>
+<p><img src="https://oi-wiki.org/ds/images/dsu2.png" srcset="/CsBlog/img/loading.gif"></p>
+<pre><code class="hljs cpp">
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span>(fa[x] == x)
+        <span class="hljs-keyword">return</span> x;
+    <span class="hljs-keyword">return</span> fa[x] = find(fa[x]); <span class="hljs-comment">// 路径压缩</span>
+&#125;</code></pre>
+
 
             </div>
             <hr>
