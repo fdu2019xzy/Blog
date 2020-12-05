@@ -319,11 +319,10 @@ int main()&#123;
     return 0;
 &#125;
 
-
 错误分析
 
 
-我们可以看到main函数中调用了三个函数，全是外部的，在链接时，符号表会进行搜索匹配。我们再来看some.h中定义了哪些函
+我们可以看到main函数中调用了三个函数，全是外部的，在链接时，符号表会进行搜索匹配。我们再来看some.h中定义了哪些函数
         </a>
       </p>
 
@@ -522,7 +521,7 @@ Convolution Layer
 
 We just let the 5x5x3 filter $w$ to take a dot product between itself and a small 5x5z3 chunck of the image
 
-$$W^Tx+b$$The $W$ and $x$ is
+W^Tx+bThe $W$ and $x$ is str
         </a>
       </p>
 
@@ -770,13 +769,7 @@ Computer’ WorkInput an image, and assign one of the label a
 完成截图
 
 Phase 1 - 入门一、分析
-练手入门题，用esi寄存器储存答案地址 (一个立即数)
-
-mov    $0x402400,%esi
-
-之后调用了一个 string_not_equal 函数比较输入和答案是否一致，一致就通过了。
-
-callq  401338 &lt;strings_not_e
+练手入门题，用esi寄存器储存答案地址 (一个立即数)mov    $0x402400,%esi之后调用了一个 string_not_equal 函数比较输入和答案是否一致，一致就通过了。callq  401338 &lt;strings_not_equal&g
         </a>
       </p>
 

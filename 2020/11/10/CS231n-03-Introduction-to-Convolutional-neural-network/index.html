@@ -227,19 +227,19 @@
             <h1 style="display: none">CS231n Introduction to Convolutional neural network 03</h1>
             
             <div class="markdown-body">
-              <h3 id="Computational-graphs"><a href="#Computational-graphs" class="headerlink" title="Computational graphs"></a>Computational graphs</h3><p><img src="https://s1.ax1x.com/2020/11/10/BbDAaD.png" srcset="/CsBlog/img/loading.gif"></p>
+              <h3 id="Computational-graphs"><a href="#Computational-graphs" class="headerlink" title="Computational graphs"></a>Computational graphs</h3><p><img src="https://s1.ax1x.com/2020/11/10/BbDAaD.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <h3 id="BackPropagation-A-method-to-compute-the-gradients-of-abitrarily-complex-function"><a href="#BackPropagation-A-method-to-compute-the-gradients-of-abitrarily-complex-function" class="headerlink" title="BackPropagation - A method to compute the gradients of abitrarily complex function"></a>BackPropagation - A method to compute the gradients of abitrarily complex function</h3><ul>
 <li>A recursive application of Chain rule</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDCKx.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BbDCKx.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>We get the gradient backprop from the front and comupte with the local gradient to prop to the back.</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDPr6.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BbDPr6.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>In some cases, some part of the graph can be represented by some func that we already know to simplify the computations. (trade off the math)</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDiqK.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BbDiqK.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <ul>
 <li>Patterns in backward flow</li>
 </ul>
@@ -252,8 +252,8 @@
 <ul>
 <li>Then We Got the gradients in the form of Jacobian Matrix</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDkVO.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDZPH.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BbDkVO.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BbDZPH.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <p><em>This place include some linear algebra</em></p>
 <h3 id="Modularized-implementation-Forward-Backward-API"><a href="#Modularized-implementation-Forward-Backward-API" class="headerlink" title="Modularized implementation: Forward / Backward API"></a>Modularized implementation: Forward / Backward API</h3><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ComputationalGraph</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">inputs</span>):</span>
@@ -266,7 +266,6 @@
         <span class="hljs-keyword">for</span> gate <span class="hljs-keyword">in</span> <span class="hljs-built_in">reversed</span>(self.graph.nodes_topologically_sorted())
             gate.backward() <span class="hljs-comment"># compute the gradients</span>
         <span class="hljs-keyword">return</span> inputs_gradients</code></pre>
-
 <h4 id="EXAMPLE-MulGate"><a href="#EXAMPLE-MulGate" class="headerlink" title="EXAMPLE: MulGate"></a>EXAMPLE: MulGate</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultiplyGate</span>(<span class="hljs-params"><span class="hljs-built_in">object</span></span>):</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">forward</span>(<span class="hljs-params">x, y</span>):</span>
         z = x*y
@@ -276,14 +275,13 @@
         dx = self.y * z
         dy = self.x * z
         <span class="hljs-keyword">return</span> [dx, dy]</code></pre>
-
 <blockquote>
 <p>This practice is common.</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDeGd.png" srcset="/CsBlog/img/loading.gif"></p>
-<h3 id="Summary-so-Far"><a href="#Summary-so-Far" class="headerlink" title="Summary so Far"></a>Summary so Far</h3><p><img src="https://s1.ax1x.com/2020/11/10/BbDmRA.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BbDeGd.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<h3 id="Summary-so-Far"><a href="#Summary-so-Far" class="headerlink" title="Summary so Far"></a>Summary so Far</h3><p><img src="https://s1.ax1x.com/2020/11/10/BbDmRA.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <h3 id="Neural-networks"><a href="#Neural-networks" class="headerlink" title="Neural networks"></a>Neural networks</h3><p>(Before) Linear score function: $f = Wx$<br>(Now) 2-layers Neural Network $f = W_2max(0, W_1x)$<br>….or more layers</p>
-<p><img src="https://s1.ax1x.com/2020/11/10/BbDEIe.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/10/BbDEIe.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>The h is the scores W1 output, and we put one more linear layer W2 on the top of it to weighting the scores given by h </p>
 </blockquote>

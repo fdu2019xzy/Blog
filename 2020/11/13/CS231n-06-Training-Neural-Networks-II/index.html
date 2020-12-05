@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      529 字
+      528 字
     </span>
   
 
@@ -233,11 +233,11 @@
 <li>Transfer Learning</li>
 </ul>
 <hr>
-<h3 id="Problem-with-SGD"><a href="#Problem-with-SGD" class="headerlink" title="Problem with SGD"></a>Problem with SGD</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9JOns.png" srcset="/CsBlog/img/loading.gif"></p>
+<h3 id="Problem-with-SGD"><a href="#Problem-with-SGD" class="headerlink" title="Problem with SGD"></a>Problem with SGD</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9JOns.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>The zig-zag path reveal the drawbacks of SGD</p>
 </blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9JbcQ.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9JbcQ.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>Stuck in the local minima.</p>
 </blockquote>
@@ -245,40 +245,38 @@
 <li>Saddle points much more common in high dimension.</li>
 </ul>
 <p><strong>Add an Momentum term may solve these problems</strong></p>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9JqXj.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9JXBn.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9JqXj.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9JXBn.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>Owing to the exsistance of momentum we can training more faster and overcome the problems mentioned before.</p>
 </blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9JH1g.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9JH1g.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <ul>
 <li><strong>Nesterov Momentum</strong></li>
 </ul>
-<p>$$v_{t+1} = \rho{v_t}-\alpha{\nabla{f(x_t+\rho{v_t})}}<br>\<br>x_{t+1} = x_t + v_{t+1}<br>$$</p>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9Jj7q.png" srcset="/CsBlog/img/loading.gif"></p>
+<script type="math/tex; mode=display">v_{t+1} = \rho{v_t}-\alpha{\nabla{f(x_t+\rho{v_t})}}
+\\
+x_{t+1} = x_t + v_{t+1}</script><p><img src="https://s3.ax1x.com/2020/11/13/D9Jj7q.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>some kind error correcting term of present v and the previous v</p>
 </blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9JzNV.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9JzNV.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <hr>
 <h3 id="AdaGrad"><a href="#AdaGrad" class="headerlink" title="AdaGrad"></a>AdaGrad</h3><pre><code class="hljs python">grad_squared = <span class="hljs-number">0</span>
 <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:
     dx = compute_gradient(x)
     grad_squared += dx * dx
     x -= learning_rate * dx / (np.sqrt(grad_squared) + <span class="hljs-number">1e-7</span>)</code></pre>
-
 <blockquote>
 <p>The basic idea about AdaGrad algorithm is that the step of dimention with smaller gradients will be divided by small vals and make it move faster, while greater one slower to avoid zig-zag behavior.</p>
-</blockquote>
-<blockquote>
 <p>while the step will become smaller and smaller while you get closer to the minima, but in turn with higher risks to stuck in the local minima.</p>
 </blockquote>
 <hr>
-<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9JxA0.png" srcset="/CsBlog/img/loading.gif"></p>
+<h3 id="RMSProp"><a href="#RMSProp" class="headerlink" title="RMSProp"></a>RMSProp</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9JxA0.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>With a decay rate to make a smooth stop the reducing of steps.</p>
 </blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9Y99U.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9Y99U.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <hr>
 <h3 id="Adam-almost"><a href="#Adam-almost" class="headerlink" title="Adam (almost)"></a>Adam (almost)</h3><pre><code class="hljs python">first_moment = <span class="hljs-number">0</span>
 second_moment = <span class="hljs-number">0</span>
@@ -289,7 +287,6 @@ second_moment = <span class="hljs-number">0</span>
     second_moment = beta2 * second_moment + (<span class="hljs-number">1</span> - beta2) * dx * dx
     <span class="hljs-comment"># AdaGrad / RMSProp</span>
     x -= learning_rate * first_moment / (np.sqrt(second_moment) + <span class="hljs-number">1e-7</span>)</code></pre>
-
 <blockquote>
 <p>It combine the two methods, but with a little bug of the first step, which gonna be super large.</p>
 </blockquote>
@@ -304,7 +301,6 @@ second_moment = <span class="hljs-number">0</span>
     first_unbias = first_moment / (<span class="hljs-number">1</span> - beta1 ** t)
     second_unbias = second_moment / (<span class="hljs-number">1</span> - beta2 ** t)
     x -= learning_rate * first_unbias / (np.sqrt(second_unbias) + <span class="hljs-number">1e-7</span>)</code></pre>
-
 <blockquote>
 <p>Bias correction for the fact that first and second moment estimates start at zero</p>
 </blockquote>
@@ -317,23 +313,23 @@ second_moment = <span class="hljs-number">0</span>
 <li>learning_rate = 1e-3 or 5e-4</li>
 </ol>
 <hr>
-<h3 id="Decay-the-learning-rate-to-make-it-finer"><a href="#Decay-the-learning-rate-to-make-it-finer" class="headerlink" title="Decay the learning rate to make it finer"></a>Decay the learning rate to make it finer</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9YShT.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9YPc4.png" srcset="/CsBlog/img/loading.gif"></p>
+<h3 id="Decay-the-learning-rate-to-make-it-finer"><a href="#Decay-the-learning-rate-to-make-it-finer" class="headerlink" title="Decay the learning rate to make it finer"></a>Decay the learning rate to make it finer</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9YShT.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9YPc4.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <hr>
-<h3 id="little-bit-Fancier-Optimization"><a href="#little-bit-Fancier-Optimization" class="headerlink" title="little bit Fancier Optimization"></a>little bit Fancier Optimization</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9YC3F.png" srcset="/CsBlog/img/loading.gif"></p>
+<h3 id="little-bit-Fancier-Optimization"><a href="#little-bit-Fancier-Optimization" class="headerlink" title="little bit Fancier Optimization"></a>little bit Fancier Optimization</h3><p><img src="https://s3.ax1x.com/2020/11/13/D9YC3F.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>First derivative optimization</p>
 </blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9YijJ.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9YijJ.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>Second derivative optimization, direct to the mini</p>
 </blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9Yku9.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9Yku9.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>Don’t need learning rate, but impractical for Hessian has O(N^2) elements and Inverting takes O(N^3)</p>
 </blockquote>
-<h4 id="Quasi-Newton-methods-BGFS"><a href="#Quasi-Newton-methods-BGFS" class="headerlink" title="Quasi - Newton methods (BGFS)"></a>Quasi - Newton methods (BGFS)</h4><p><img src="https://s3.ax1x.com/2020/11/13/D9YABR.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9YEH1.png" srcset="/CsBlog/img/loading.gif"></p>
+<h4 id="Quasi-Newton-methods-BGFS"><a href="#Quasi-Newton-methods-BGFS" class="headerlink" title="Quasi - Newton methods (BGFS)"></a>Quasi - Newton methods (BGFS)</h4><p><img src="https://s3.ax1x.com/2020/11/13/D9YABR.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9YEH1.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <hr>
 <h3 id="In-Practice"><a href="#In-Practice" class="headerlink" title="In Practice:"></a>In Practice:</h3><ul>
 <li>Using Adam</li>
@@ -345,7 +341,7 @@ second_moment = <span class="hljs-number">0</span>
 <li>At test time average their results</li>
 </ol>
 <p>2% improvement maybe</p>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9YeN6.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9YeN6.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>Instead of using actual parameter vector, keep a moving average of the para vector and use that at test time</p>
 </blockquote>
@@ -355,24 +351,21 @@ second_moment = <span class="hljs-number">0</span>
     dx = network.backward()
     x += - learning_rate * dx
     x_test = <span class="hljs-number">0.995</span>*x_test + <span class="hljs-number">0.005</span>*x</code></pre>
-
 <h4 id="Regularization-to-make-single-model-performs-better"><a href="#Regularization-to-make-single-model-performs-better" class="headerlink" title="Regularization to make single model performs better"></a>Regularization to make single model performs better</h4><ul>
 <li>Dropout</li>
 </ul>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9Ym4K.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9YK3D.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9Ym4K.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9YK3D.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>Another interpretation is that you can percive each binary mask as a single model, so it just like dropout is training a large ensemble of models with shared paras.</p>
 </blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9Yu9O.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9YMge.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9Yu9O.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9YMge.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <h4 id="Batch-Normalization"><a href="#Batch-Normalization" class="headerlink" title="Batch Normalization"></a>Batch Normalization</h4><blockquote>
 <p>Which can achieve the same effect as the Dropout, for it includes some noises.</p>
+<h4 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h4><p>To introduce noise to make it performs better on unseen data.</p>
 </blockquote>
-<h4 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h4><blockquote>
-<p>To introduce noise to make it performs better on unseen data.</p>
-</blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9YQjH.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9YQjH.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <h4 id="Stochastic-Depth"><a href="#Stochastic-Depth" class="headerlink" title="Stochastic Depth"></a>Stochastic Depth</h4><blockquote>
 <p>Randomly drop layers during training.<br>Use the full networks during testing.</p>
 </blockquote>
@@ -380,7 +373,7 @@ second_moment = <span class="hljs-number">0</span>
 <h3 id="Transfer-Learning"><a href="#Transfer-Learning" class="headerlink" title="Transfer Learning"></a>Transfer Learning</h3><blockquote>
 <p>There is no need for huge amount of data.</p>
 </blockquote>
-<p><img src="https://s3.ax1x.com/2020/11/13/D9Y1ud.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s3.ax1x.com/2020/11/13/D9Y1ud.png" srcset="/CsBlog/img/loading.gif" alt></p>
 
             </div>
             <hr>

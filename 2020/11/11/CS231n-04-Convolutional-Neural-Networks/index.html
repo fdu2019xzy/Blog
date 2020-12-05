@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      288 字
+      287 字
     </span>
   
 
@@ -227,53 +227,52 @@
             <h1 style="display: none">CS231n Convolutional_Neural_Networks 04</h1>
             
             <div class="markdown-body">
-              <h3 id="A-bit-of-CNN-History"><a href="#A-bit-of-CNN-History" class="headerlink" title="A bit of CNN History"></a>A bit of CNN History</h3><p><img src="https://s1.ax1x.com/2020/11/11/BOGJ5n.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGGUs.png" srcset="/CsBlog/img/loading.gif"></p>
-<h4 id="Fully-Connected-Layer"><a href="#Fully-Connected-Layer" class="headerlink" title="Fully Connected Layer"></a>Fully Connected Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOGlDg.png" srcset="/CsBlog/img/loading.gif"></p>
-<h4 id="Convolution-Layer"><a href="#Convolution-Layer" class="headerlink" title="Convolution Layer"></a>Convolution Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOG1bQ.png" srcset="/CsBlog/img/loading.gif"></p>
+              <h3 id="A-bit-of-CNN-History"><a href="#A-bit-of-CNN-History" class="headerlink" title="A bit of CNN History"></a>A bit of CNN History</h3><p><img src="https://s1.ax1x.com/2020/11/11/BOGJ5n.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGGUs.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<h4 id="Fully-Connected-Layer"><a href="#Fully-Connected-Layer" class="headerlink" title="Fully Connected Layer"></a>Fully Connected Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOGlDg.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<h4 id="Convolution-Layer"><a href="#Convolution-Layer" class="headerlink" title="Convolution Layer"></a>Convolution Layer</h4><p><img src="https://s1.ax1x.com/2020/11/11/BOG1bQ.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>We just let the 5x5x3 filter $w$ to take a dot product between itself and a small 5x5z3 chunck of the image</p>
 </blockquote>
-<p>$$W^Tx+b$$<br><strong>The $W$ and $x$ is streched into 1 dimention vec</strong></p>
+<script type="math/tex; mode=display">W^Tx+b</script><p><strong>The $W$ and $x$ is streched into 1 dimention vec</strong></p>
 <ul>
 <li>Then the Outcome:</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG8Ej.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOG8Ej.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>We can use different layers on the top of it and get more activation maps stack them together to get a new image, just as the following pic depicted.</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGtCq.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGtCq.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>Then we can recursively do that work, make the front layer’s output be the next layer’s input</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGU2V.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGU2V.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <p><strong>The Layers may look like..</strong><br><em>Simple -&gt; Complex</em></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGN80.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGrVJ.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGN80.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGrVJ.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <ul>
 <li>The Convolution of two signals:</li>
 </ul>
-<p>$$f[x,y]*g[x,y] = \sum\limits_{n_1 = -\infin}^{\infin}\sum\limits_{n_2 = -\infin}^{\infin}f[n_1,n_2]·g[x-n_1,y-n_2]$$</p>
-<ul>
+<script type="math/tex; mode=display">f[x,y]*g[x,y] = \sum\limits_{n_1 = -\infin}^{\infin}\sum\limits_{n_2 = -\infin}^{\infin}f[n_1,n_2]·g[x-n_1,y-n_2]</script><ul>
 <li>A little bit preview</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG0rF.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOG0rF.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <hr>
 <ul>
 <li>Convolution Box</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGwKU.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGwKU.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>We can tell that the activation maps are becomming smaller after the filter, so we commonly use zero pad to deal with it.</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGBb4.png" srcset="/CsBlog/img/loading.gif"></p>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGsa9.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGBb4.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGsa9.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>The Matrix shrinks from 32 —&gt; 28 -&gt; 24 (lose info)</p>
 </blockquote>
 <hr>
 <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ol>
-<li>Accepts a volume of size $W_1 * H_1 * D_1$</li>
+<li>Accepts a volume of size $W_1 <em> H_1 </em> D_1$</li>
 <li>Four Hyperparas<ul>
 <li>Number of filters $K$</li>
 <li>spatial extent $F$</li>
@@ -281,7 +280,7 @@
 <li>zero padding amount $P$</li>
 </ul>
 </li>
-<li>Produces a volume of size $W_2 * H_2 * D_2$<ul>
+<li>Produces a volume of size $W_2 <em> H_2 </em> D_2$<ul>
 <li>$W_2 = (W_1 - F + 2P)/S + 1$</li>
 <li>$H_2 = (H_1 - F + 2P)/S + 1$</li>
 <li>$D_2 = K$ <em>Depth keeps the same</em></li>
@@ -298,23 +297,23 @@
 <h3 id="Conv-details"><a href="#Conv-details" class="headerlink" title="Conv details"></a>Conv details</h3><ul>
 <li>One by One CONV</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGy5R.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGy5R.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <ul>
 <li>EXAMPLE: CONV in pyTorch</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGRxK.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGRxK.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <ul>
 <li>The Brain/Neuron View of CONV</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOG226.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOG226.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <ul>
 <li>Pooling layer</li>
 </ul>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGg8x.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGg8x.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>Just spacially down sample the image to make it smaller.<br>Common Practice is Max Pooling</p>
 </blockquote>
-<p><img src="https://s1.ax1x.com/2020/11/11/BOGcP1.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://s1.ax1x.com/2020/11/11/BOGcP1.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <blockquote>
 <p>We may can just use stride to replace pooling?</p>
 </blockquote>

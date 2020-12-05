@@ -231,7 +231,7 @@
 <hr>
 <h2 id="LCA-问题"><a href="#LCA-问题" class="headerlink" title="LCA 问题"></a>LCA 问题</h2><p>LCA (Least Common Ancestors) 最近公共祖先问题，顾名思义既要找到两个节点最近的公共祖先，朴素做法是，两个节点中深的那个节点向上跳，直到两个节点深度相同，两个节点再同时向上跳（询问父节点）如果他们跳到最后的父节点是同一个那么这个节点就是他们的最近公共祖先。</p>
 <p>这种朴素的算法很好思考，但复杂度也是很高的，单次询问时间复杂度 O(n) 因为最坏要把所有节点都跳一遍。</p>
-<p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1414039454,330983716&fm=26&gp=0.jpg" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1414039454,330983716&amp;fm=26&amp;gp=0.jpg" srcset="/CsBlog/img/loading.gif" alt></p>
 <h3 id="LCA-倍增算法"><a href="#LCA-倍增算法" class="headerlink" title="LCA - 倍增算法"></a><strong>LCA - 倍增算法</strong></h3><p>倍增算法是LCA的经典算法，如同二分算法的本质一样，都是通过每次尽量把问题规模缩减2的幂次，从而达到 O(lgn) 的时间复杂度。</p>
 <p>我们简单讲解一下，倍增算法就是我不再像朴素算法一样一个个往上跳，我直接跳2的幂次，从大到小枚举，如果符合题意就跳，直到 2^0 跳一个节点，这样一次遍历下来，总能覆盖所有情况而满足题意跳到要跳的地方，但复杂度却大大降低减为 O(lgn)</p>
 <ul>
@@ -285,7 +285,6 @@
 
     <span class="hljs-keyword">return</span> up[x][<span class="hljs-number">0</span>];    <span class="hljs-comment">// 最后 lca 就是里面任意一个的父亲</span>
 &#125;</code></pre>
-
 </li>
 </ul>
 <hr>
@@ -338,7 +337,6 @@
     <span class="hljs-keyword">return</span> max(f[i][k], f[r - (<span class="hljs-number">1</span> &lt;&lt; k) + <span class="hljs-number">1</span>][k]); <span class="hljs-comment">// O(1) 查询</span>
 &#125;
 </code></pre>
-
 <p>这样一个ST表就写好了，回到正题，我们是通过欧拉序把 LCA问题转换为RMQ问题，我们现在来看这是如何进行的。</p>
 <p>在看欧拉序之前我们先看一看基本的 dfs 序是怎么做的（真就递归学习呗）</p>
 <p><img src="https://img-blog.csdnimg.cn/20191008210415266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3djeHlreQ==,size_16,color_FFFFFF,t_70" srcset="/CsBlog/img/loading.gif" alt="dfs序"></p>
@@ -396,7 +394,6 @@
     <span class="hljs-keyword">int</span> ans = min(f[l][j], f[r - (<span class="hljs-number">1</span> &lt;&lt; j) + <span class="hljs-number">1</span>][j]);
     <span class="hljs-keyword">return</span> pos[ans];    <span class="hljs-comment">// 返回节点位置...</span>
 &#125;</code></pre>
-
 <hr>
 <h2 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h2><p>再来讲讲这周学的并查集</p>
 <p>并查集顾名思义支持且仅支持两种操作</p>
@@ -409,7 +406,7 @@
 <li>合并操作</li>
 </ul>
 <p>合并操作相对比较简单，由于我们通过根节点来代表这个集合，那么合并两个集合只需要将其中一个的根节点作为另一个的子节点连接上即可。但同时我们要注意整棵树的深度会影响我们的时间复杂度，因而我们要尽可能不加深或是少加深树的深度，所以我们采用将深度较小的树连接到深度较大的树上，每次这样操作，树深度每次至多 +1，这种策略称之为<strong>按秩合并（启发式合并）</strong></p>
-<p><img src="https://oi-wiki.org/ds/images/dsu1.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://oi-wiki.org/ds/images/dsu1.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <ul>
 <li>代码</li>
 </ul>
@@ -423,13 +420,12 @@
         swap(tmp_x, tmp_y); <span class="hljs-comment">// 让 tmp_x 是深度小的集合</span>
     fa[tmp_x] = tmp_y; <span class="hljs-comment">// 将 tmp_x 连接到 tmp_y 上</span>
 &#125;</code></pre>
-
 <ul>
 <li>查询操作</li>
 </ul>
 <p>我们来讲并查集关键的查询操作，并查集的查询操作给出一个节点，我们查询其父节点，如若其父节点不是自身就继续向上查询，直到查询到根节点（父节点为自身）返回根节点作为这个集合的代表。</p>
 <p>我们不难看出这样的查询操作单次是 $O(n)$ 的，原因是我们每次查询都要走完完整的一条链，但是其实我们并不关心该节点的父节点是谁，我们只想知道其根节点是什么。所以我们可以直接让它的父节点直接是根节点，这样虽然在第一次操作的时候，我们还是要走完一条链，但之后该节点的父节点直接就是根节点。这种操作称为<strong>路径压缩</strong></p>
-<p><img src="https://oi-wiki.org/ds/images/dsu2.png" srcset="/CsBlog/img/loading.gif"></p>
+<p><img src="https://oi-wiki.org/ds/images/dsu2.png" srcset="/CsBlog/img/loading.gif" alt></p>
 <pre><code class="hljs cpp">
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>
 <span class="hljs-function"></span>&#123;
@@ -437,14 +433,20 @@
         <span class="hljs-keyword">return</span> x;
     <span class="hljs-keyword">return</span> fa[x] = find(fa[x]); <span class="hljs-comment">// 路径压缩</span>
 &#125;</code></pre>
-
 <ul>
 <li><strong>复杂度分析</strong></li>
 </ul>
 <p>我们现在来分析一下复杂度，朴素算法毫无疑问单次操作是 $O(mn)$ 的<br>如果我们使用了路径压缩，在Tarjan大神的论文[1] 中给出了复杂度的证明，只使用路径压缩不使用按秩合并的最坏时间复杂度是 $O(mlogn)$ 已经满足大部分题的需求，所以一般只需要路径压缩就能过题。<br>在姚期智的论文 [2] 中，证明了只路径压缩的平均复杂度为 $O(m\alpha{(m,n)})$<br><em>注： $\alpha$ 是阿克曼函数的反函数，其增长极其缓慢，也就是说其单次操作的平均运行时间可以认为是一个很小的常数。</em></p>
 <p>如果我们同时使用了路径压缩和按秩合并，那么我们可以做到 $O(m\alpha{(m,n)})$ 的最坏时间复杂度。相当于单次询问是常数级别复杂度。</p>
-<p>Ackermann 函数<br>$$<br>A(m,n) =\left{<br>\begin{array}{l}<br>    n + 1, ; m = 0 \<br>    A(m - 1, 1), m &gt; 0 ;and; n = 0 \<br>    A(m - 1, A(m, n - 1)),;othercases<br>\end{array}<br>\right.<br>$$</p>
-<p>$A(4, 3)$ 大的惊人，其反函数增长就相对应慢的惊人，直接可看为常数</p>
+<p>Ackermann 函数</p>
+<script type="math/tex; mode=display">
+A(m,n) =\left\{
+\begin{array}{l}
+    n + 1, \; m = 0 \\
+    A(m - 1, 1), m > 0 \;and\; n = 0 \\
+    A(m - 1, A(m, n - 1)),\;othercases
+\end{array}
+\right.</script><p>$A(4, 3)$ 大的惊人，其反函数增长就相对应慢的惊人，直接可看为常数</p>
 <hr>
 <h2 id="树上差分算法"><a href="#树上差分算法" class="headerlink" title="树上差分算法"></a>树上差分算法</h2><p>讲一下这周作业题里涉及到的树上差分算法</p>
 <hr>

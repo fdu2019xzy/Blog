@@ -294,10 +294,9 @@ edge e[Max];
         preOrder(root-&gt;child)    <span class="hljs-comment">//递归子树</span>
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, root-&gt;val);
 &#125;</code></pre>
-
+<p>通过两次 dfs 我们可以求树的直径，一次 dfs 到直径的端点，再一次求出直径长度。</p>
 </li>
 </ol>
-<p> 通过两次 dfs 我们可以求树的直径，一次 dfs 到直径的端点，再一次求出直径长度。</p>
 <p>dfs 所使用的数据结构是栈，这种数据结构隐含在函数的递归调用中，而对于 bfs 所使用的数据结构是队列，我们就需要</p>
 <hr>
 <h5 id="广-宽-度优先搜索-bfs"><a href="#广-宽-度优先搜索-bfs" class="headerlink" title="广(宽)度优先搜索 (bfs)"></a>广(宽)度优先搜索 (bfs)</h5><p>bfs 不同于 dfs 是深度优先的搜索，bfs是将同层的节点全部搜索过后再进入到下一次，既注重 “广度” 的搜索模式</p>
@@ -338,7 +337,6 @@ edge e[Max];
         dfs(v, u, level + <span class="hljs-number">1</span>)
     &#125;
 &#125;</code></pre>
-
 <hr>
 <h5 id="树形dp"><a href="#树形dp" class="headerlink" title="树形dp"></a>树形dp</h5><p>树形dp，顾名思义是在树上进行的dp，在dfs或bfs的过程中进行动态更新。例如通过树形dp求树的直径</p>
 <pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u, <span class="hljs-keyword">int</span> fa)</span></span>
@@ -362,7 +360,6 @@ edge e[Max];
     &#125;
     <span class="hljs-keyword">return</span> max;
 &#125;</code></pre>
-
 <hr>
 <h4 id="尚未熟练-TODO"><a href="#尚未熟练-TODO" class="headerlink" title="尚未熟练 - TODO"></a><strong>尚未熟练 - TODO</strong></h4><ol>
 <li>LCA问题</li>
@@ -663,45 +660,6 @@ edge e[Max];
 
 
 
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.staticfile.org/mathjax/3.1.2/es5/tex-svg.js" ></script>
-
-  
 
 
 
