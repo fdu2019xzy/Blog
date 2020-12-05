@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.2k 字
+      4.1k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      40
+      50
        分钟
     </span>
   
@@ -448,7 +448,41 @@ A(m,n) =\left\{
 \end{array}
 \right.</script><p>$A(4, 3)$ 大的惊人，其反函数增长就相对应慢的惊人，直接可看为常数</p>
 <hr>
-<h2 id="树上差分算法"><a href="#树上差分算法" class="headerlink" title="树上差分算法"></a>树上差分算法</h2><p>讲一下这周作业题里涉及到的树上差分算法</p>
+<h2 id="树上差分算法"><a href="#树上差分算法" class="headerlink" title="树上差分算法"></a>树上差分算法</h2><p>讲一下这周作业题里涉及到的树上差分算法<br>树上差分问题可以用树链剖分解决，但我目前还不太会，就写一下现在会一点的树上差分。</p>
+<p>树上差分分为两种，边差分和点差分。</p>
+<ul>
+<li>边差分<br>考虑一个经典问题，<strong>给出两点x, y 将其路径上的边权加1，最后给出所有边权。</strong></li>
+</ul>
+<p><img src="https://img2020.cnblogs.com/blog/1756083/202004/1756083-20200429121732302-1807574001.png" srcset="/CsBlog/img/loading.gif" alt="图源:https://www.cnblogs.com/zhwer/p/12800475.html"></p>
+<p>我们看这张图，数组 c[k] 是差分数组只不过我们是自下而上加的，为不影响其他子树的结果，我们的统计在回溯过程中完成，因而是自下而上的，那么这个边权修改过程就可以看做是 c[x]++, c[y]++, 然后 根节点到lca(x, y)被加了两次，我们都要减去 c[lca(x, y)] -= 2</p>
+<p>既然是差分那么对于权值的更新，我们就可以如同前缀和一样计算，这不过这里的”前缀”是所有的子树权值，我们将所有子树权值收集起来到父节点上。</p>
+<ul>
+<li>代码实现</li>
+</ul>
+<pre><code class="hljs cpp"><span class="hljs-comment">// 已求出差分数组c</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">getAns</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u, <span class="hljs-keyword">int</span> fa)</span></span>
+<span class="hljs-function"></span>&#123;  
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = head[u]; i != <span class="hljs-number">-1</span>; i = e[i].nex)
+    &#123;
+        <span class="hljs-keyword">int</span> v = e[i].v;
+        <span class="hljs-keyword">if</span>(v != fa)
+        &#123;
+            getAns(v, u);
+            c[u] += c[v] <span class="hljs-comment">// 收集子树权值更新c为原本数组</span>
+            <span class="hljs-comment">// 更新后的c就代表其和其父节点连接边的边权</span>
+        &#125;
+    &#125;
+&#125;</code></pre>
+<ul>
+<li>点差分<br>点差分和边差分差不多，但这回每个点都代表的是自己了。<br><img src="https://img2020.cnblogs.com/blog/1756083/202004/1756083-20200429121614916-299376969.png" srcset="/CsBlog/img/loading.gif" alt="图源:https://www.cnblogs.com/zhwer/p/12800475.html"></li>
+</ul>
+<p>和边差分不同的是，这回lca不需要减2了，因为每个点代表的就是自己，在统计的时候 x, y 路径上是有 lca(x, y) 的，因而只需要减去一次重复计算即可。但这边lca在计算”前缀和”的时候会 +1，差分数组某一地方值的变动会影响到后面所有的值（这就是差分数组的精髓和意义所在）但lca的父亲并不应该 +1 所以我们要将 c[fa[lca(x,y)]]— 这个过程之后，我们的差分数组就完成了。<br>最后自下而上的收集一下，就能得到所有节点的权值了。</p>
+<ul>
+<li>思想总结</li>
+</ul>
+<p>差分的思想就是将原来本不相干的值联系到了一起，把后面点的部分信息移到了前面的点中，形成了区间的覆盖，这种效果正好能够用于解决区间修改问题，避免了暴力算法对每个点都进行操作，很巧妙的思想。</p>
+<hr>
+<h2 id="最后总结"><a href="#最后总结" class="headerlink" title="最后总结"></a>最后总结</h2><p>本周DS主要学习这些内容，AVL树很惭愧虽然上课讲了但还没有深入去看，线段树和树链剖分还不太会，树状数组也快忘记了。最近又重新听到了《蜗牛》这首歌，隔了这么多年，再听还是很感动。“历经的伤都不感觉疼”，“任风吹干流过的泪和汗，总有一天我有属于我的天。”<br>每周都在不断吸收新知识，很充实也很疲倦，每天都学到12点之后。就是希望能够在未来有一片自己的天。科研也在不断做，但进度很慢，时间分配越来越不够了，最近越来越感到拔尖班的藏龙卧虎，个个都是人才，让我感到了很大的压力。但就像《蜗牛》中说的即使我很慢，拖着重重的壳，只要我每天一步一步的向上爬，我总能触碰到那片属于我的蓝天。</p>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1]Tarjan, R. E., &amp; Van Leeuwen, J. (1984). Worst-case analysis of set union algorithms.<br>[2]Yao, A. C. (1985). On the expected performance of path compression algorithms. SIAM Journal on Computing, 14(1), 129-133.</p>
 
