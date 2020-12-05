@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Xzy">
   <meta name="keywords" content="">
-  <title>近期进展 (2020-11-30 ~ 2020-12-05) - Xavier&#39;s Blog</title>
+  <title>数据结构笔记 (2020-11-30 ~ 2020-12-05) - Xavier&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="近期进展 (2020-11-30 ~ 2020-12-05)">
+            <span class="h2" id="subtitle" title="数据结构笔记 (2020-11-30 ~ 2020-12-05)">
               
             </span>
 
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.3k 字
+      2.5k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      30
+      32
        分钟
     </span>
   
@@ -224,18 +224,15 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">近期进展 (2020-11-30 ~ 2020-12-05)</h1>
+            <h1 style="display: none">数据结构笔记 (2020-11-30 ~ 2020-12-05)</h1>
             
             <div class="markdown-body">
-              <h1 id="最近进展-2020-11-30-2020-12-05"><a href="#最近进展-2020-11-30-2020-12-05" class="headerlink" title="最近进展 (2020-11-30 ~ 2020-12-05)"></a>最近进展 (2020-11-30 ~ 2020-12-05)</h1><h2 id="学业方面"><a href="#学业方面" class="headerlink" title="学业方面"></a><strong>学业方面</strong></h2><h3 id="数据结构-DataStructure"><a href="#数据结构-DataStructure" class="headerlink" title="数据结构 - DataStructure"></a>数据结构 - DataStructure</h3><p>数据结构这周依然是树上操作，课上学了AVL树，然后讲了之前用过的Hash，然后作业里面主要学会了LCA的倍增和不太熟练的欧拉序RMQ，最后学会了并查集的使用（就可以学最后的Tarjan LCA算法了) ，然后这周作业题主要是并查集，带有一道树上差分算法。</p>
+              <h1 id="数据结构-DataStructure"><a href="#数据结构-DataStructure" class="headerlink" title="数据结构 - DataStructure"></a>数据结构 - DataStructure</h1><p>数据结构这周依然是树上操作，课上学了AVL树，然后讲了之前用过的Hash，然后作业里面主要学会了LCA的倍增和不太熟练的欧拉序RMQ，最后学会了并查集的使用（就可以学最后的Tarjan LCA算法了) ，然后这周作业题主要是并查集，带有一道树上差分算法。</p>
 <hr>
-<h5 id="LCA-问题"><a href="#LCA-问题" class="headerlink" title="LCA 问题"></a>LCA 问题</h5><p>LCA (Least Common Ancestors) 最近公共祖先问题，顾名思义既要找到两个节点最近的公共祖先，朴素做法是，两个节点中深的那个节点向上跳，直到两个节点深度相同，两个节点再同时向上跳（询问父节点）如果他们跳到最后的父节点是同一个那么这个节点就是他们的最近公共祖先。</p>
+<h2 id="LCA-问题"><a href="#LCA-问题" class="headerlink" title="LCA 问题"></a>LCA 问题</h2><p>LCA (Least Common Ancestors) 最近公共祖先问题，顾名思义既要找到两个节点最近的公共祖先，朴素做法是，两个节点中深的那个节点向上跳，直到两个节点深度相同，两个节点再同时向上跳（询问父节点）如果他们跳到最后的父节点是同一个那么这个节点就是他们的最近公共祖先。</p>
 <p>这种朴素的算法很好思考，但复杂度也是很高的，单次询问时间复杂度 O(n) 因为最坏要把所有节点都跳一遍。</p>
 <p><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1414039454,330983716&fm=26&gp=0.jpg" srcset="/CsBlog/img/loading.gif"></p>
-<ul>
-<li><strong>LCA - 倍增算法</strong></li>
-</ul>
-<p>倍增算法是LCA的经典算法，如同二分算法的本质一样，都是通过每次尽量把问题规模缩减2的幂次，从而达到 O(lgn) 的时间复杂度。</p>
+<h3 id="LCA-倍增算法"><a href="#LCA-倍增算法" class="headerlink" title="LCA - 倍增算法"></a><strong>LCA - 倍增算法</strong></h3><p>倍增算法是LCA的经典算法，如同二分算法的本质一样，都是通过每次尽量把问题规模缩减2的幂次，从而达到 O(lgn) 的时间复杂度。</p>
 <p>我们简单讲解一下，倍增算法就是我不再像朴素算法一样一个个往上跳，我直接跳2的幂次，从大到小枚举，如果符合题意就跳，直到 2^0 跳一个节点，这样一次遍历下来，总能覆盖所有情况而满足题意跳到要跳的地方，但复杂度却大大降低减为 O(lgn)</p>
 <ul>
 <li>代码实现<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> u, <span class="hljs-keyword">int</span> fa)</span></span>
@@ -292,20 +289,14 @@
 </li>
 </ul>
 <hr>
-<ul>
-<li><strong>LCA - 欧拉序RMQ算法</strong></li>
-</ul>
-<p>这边涉及到RMQ问题，我们就先来讲一讲RMQ问题。</p>
+<h3 id="LCA-欧拉序RMQ算法"><a href="#LCA-欧拉序RMQ算法" class="headerlink" title="LCA - 欧拉序RMQ算法"></a><strong>LCA - 欧拉序RMQ算法</strong></h3><p>这边涉及到RMQ问题，我们就先来讲一讲RMQ问题。</p>
 <ul>
 <li><em>RMQ 问题</em><br>RMQ 是英文 Range Maximum/Minimum Query 的缩写，表示区间最大（最小）值。</li>
 </ul>
 <p>RMQ问题一般可以使用单调栈、ST表、线段树来解决</p>
 <p>通过欧拉序将LCA问题转为RMQ问题后，我们一般使用ST表来解决RMQ问题。因为ST表在时间复杂度上表现优秀，需要 O(nlgn)的预处理，就能做到O(1)的询问。而写起来又较为简单，不像线段树一样复杂。可以处理大部分不需要在线修改的 RMQ 问题。</p>
 <p>另一方面如果我们使用单调栈和线段树在单次询问的时间复杂度仍然是 O(lgn) 级别的本没有做到比倍增算法更优，但在代码方面却比倍增算法更为复杂，因而我们选择ST表进行处理。</p>
-<ul>
-<li><strong>ST表 - Sparse table</strong></li>
-</ul>
-<p>我们说 ST 表可以用来解决可重复贡献问题，因为ST表涉及到区间重叠，我们要保证区间重叠不会影响到我们要求的问题。所以ST表只能解决可重复贡献问题，例如最值和gcd</p>
+<h3 id="ST表-Sparse-table"><a href="#ST表-Sparse-table" class="headerlink" title="ST表 - Sparse table"></a><strong>ST表 - Sparse table</strong></h3><p>我们说 ST 表可以用来解决可重复贡献问题，因为ST表涉及到区间重叠，我们要保证区间重叠不会影响到我们要求的问题。所以ST表只能解决可重复贡献问题，例如最值和gcd</p>
 <pre><code class="hljs cpp"><span class="hljs-comment">// ST表</span>
 <span class="hljs-keyword">int</span> f[Max][lgn], Logn[Max], a[Max];
 <span class="hljs-comment">// f[i][k] 表示区间 i ~ i + 2^k - 1 的最值</span>
@@ -406,9 +397,21 @@
 &#125;</code></pre>
 
 <hr>
-<h5 id="树上差分算法"><a href="#树上差分算法" class="headerlink" title="树上差分算法"></a>树上差分算法</h5><ul>
-<li>TODO:</li>
+<h2 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h2><p>先来讲讲这周学的并查集</p>
+<p>并查集顾名思义支持且仅支持两种操作</p>
+<ol>
+<li>合并两个集合</li>
+<li>查询两个元素是否在同一集合中</li>
+</ol>
+<p>并查集是一种树上的操作，通过根节点直接代表整棵树。</p>
+<ul>
+<li>合并操作</li>
 </ul>
+<p>合并操作相对比较简单，由于我们通过根节点来代表这个集合，那么合并两个集合只需要将其中一个的根节点作为另一个的子节点连接上即可。但同时我们要注意整棵树的深度会影响我们的时间复杂度，因而我们要尽可能不加深或是少加深树的深度，所以我们采用将深度较小的树连接到深度较大的树上，每次这样操作，树深度每次至多 +1，这种策略称之为按秩合并（启发式合并）</p>
+<ul>
+<li>查询操作</li>
+</ul>
+<p>我们来讲并查集关键的查询操作，</p>
 
             </div>
             <hr>
@@ -456,8 +459,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/12/05/Recent-Progress%20(2020-11-30%20~%202020-12-05)/';
-        this.page.identifier = '/CsBlog/2020/12/05/Recent-Progress%20(2020-11-30%20~%202020-12-05)/';
+        this.page.url = 'https://fdu2019xzy.github.io/CsBlog/2020/12/05/DataStructureNote1/';
+        this.page.identifier = '/CsBlog/2020/12/05/DataStructureNote1/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');
