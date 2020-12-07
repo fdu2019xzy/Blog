@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>素数筛法 (2020-12-7)</title>
+    <link href="/CsBlog/2020/12/07/DataStructureNote2/"/>
+    <url>/CsBlog/2020/12/07/DataStructureNote2/</url>
+    
+    <content type="html"><![CDATA[<h1 id="素数筛法"><a href="#素数筛法" class="headerlink" title="素数筛法"></a>素数筛法</h1><p>我们今天来讲讲筛法，今天上机出其不意的考了一手筛法，我居然天真的在写暴力素数判断。所以今天就来复习(重学)一下筛法。</p><p>如果我们想要判断一个数是否是素数有什么方法呢？ 暴力判断肯定是最容易想到的方法，按定义素数不能被1和其自身以外的数整除，我们自然会想到从 x - 1到2全判一遍的算法。但显然，我们做了很多重复的工作。</p><p>实际上我们可以发现，如果我们判断出了一个素数，那么它的倍数显然就不可能是素数，这样就可以直接将其开除“素籍“，踢出待选区域。这种筛选素数的方法就像一个筛子，每碰到一个素数就筛掉一批非素数，大大降低了复杂度。</p><p><img src="https://images2015.cnblogs.com/blog/927750/201612/927750-20161229220529101-1487746442.png" alt></p><h2 id="埃拉托斯特尼筛法"><a href="#埃拉托斯特尼筛法" class="headerlink" title="埃拉托斯特尼筛法"></a>埃拉托斯特尼筛法</h2><p>按上述思想写出代码，就是埃氏筛法。</p><ul><li>代码实现</li></ul><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Eratosthenes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<span class="hljs-keyword">int</span> p = <span class="hljs-number">0</span>;<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; ++i)     is_prime[i] = <span class="hljs-number">1</span>;is_prime[<span class="hljs-number">0</span>] = is_prime[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= n; ++i) &#123;    <span class="hljs-keyword">if</span> (is_prime[i]) <span class="hljs-comment">// 直接从2开筛不会放进来一个非素数</span>    &#123;        prime[p++] = i;         <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>)i * i &lt;= n)            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i * i; j &lt;= n; j += i)                <span class="hljs-comment">// 因为从 2 到 i - 1 的倍数我们之前筛过了，这里直接从 i 的 i倍开始，提高了运行速度</span>                is_prime[j] = <span class="hljs-number">0</span>;  <span class="hljs-comment">// 是i的倍数的均不是素数</span>    &#125;&#125;<span class="hljs-keyword">return</span> p;&#125;</code></pre><h3 id="复杂度计算"><a href="#复杂度计算" class="headerlink" title="复杂度计算"></a>复杂度计算</h3><p>关于埃氏筛法的复杂度计算，我们来做一个推导，首先我们可以看出每次循环中，若当前素数是p，那么单次循环执行 n/p 次， 所以总的表达式就是 n 乘上所有素数的倒数和 $n\sum_{p} \frac{1}{p}$</p><p>关于所有素数的倒数和，在欧拉相关的论文中有明确的估计。</p><script type="math/tex; mode=display">\sum_{p\le x} \frac{1}{p} = \ln\ln(x) + \gamma + \sum_{m = 2}^{\infty}{\mu (m){\frac{\zeta(m)}{m} + \delta}}</script><p>论文链接 [<a href="https://arxiv.org/pdf/math/0504289.pdf">https://arxiv.org/pdf/math/0504289.pdf</a>]</p><p>可知埃氏筛法的复杂度为 $O(nloglogn)$</p><hr><h2 id="欧拉筛法-（线性筛）"><a href="#欧拉筛法-（线性筛）" class="headerlink" title="欧拉筛法 （线性筛）"></a>欧拉筛法 （线性筛）</h2><p>TODO</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>DataStructure</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Multiplication algorithm</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>PointNet论文阅读</title>
     <link href="/CsBlog/2020/12/06/PointNet/"/>
     <url>/CsBlog/2020/12/06/PointNet/</url>
