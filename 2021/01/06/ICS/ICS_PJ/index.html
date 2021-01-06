@@ -243,48 +243,30 @@
 <p>整个交互逻辑和运行过程分为，前端上传 ys/yo 文件 post 到中端的 lauch.py 的flask服务器，flask驱动编译器编译并将编译好的yo文件传到 CPU 中。CPU 按设计跑完输出 data.json 文件，前端 fetch 后端 CPU 生成的 data.json 在前端按操作逻辑进行展示。</p>
 <p>由于后端 C++ 跑的非常快，我们前端在上传后几乎能够即时获得 data, 而这样前后端分离的好处在于，我们前端可以非常自由的展现数据，所有的前进回溯甚至跳跃，都可以在 O(1) 内实现，不会出现很大的限制。</p>
 <hr>
-<div style="page-break-after: always;"></div>
-## 二、使用方式及功能详解
-
-### 1. 具体使用方法
-(见项目目录下 README.md)
-
-### 2. 功能详解
-
-- 主体功能介绍图
-
-![](https://s3.ax1x.com/2021/01/06/sAv8Gn.png)
-
-![](https://s3.ax1x.com/2021/01/06/sAv3Ps.png)
-
-- 当前指令模块
-
-<img src="https://s3.ax1x.com/2021/01/06/sAvV2t.png" srcset="/CsBlog/img/loading.gif" style="width:250px">
-
-当前指令显示我们当前运行到的指令 (PC 所指)，并包含前后文2条指令的信息。
-
-**隐藏断点设置**
-
-为了前端的布局美观和统一性，断点设置被隐藏进了当前指令卡片中，点击当前指令卡片即可设置断点。
-
-<img src="https://s3.ax1x.com/2021/01/06/sAvE8I.png" srcset="/CsBlog/img/loading.gif" style="width:400px">
-
-可以任意设置增删断点
-
-- **终端字符及彩色矩阵输出**
-
-根据后端的内存映射，我们可以让终端输出字符以及彩色矩阵。
-
-<img src="https://s3.ax1x.com/2021/01/06/sAvJx0.png" srcset="/CsBlog/img/loading.gif" style="width:300px">
-
-
-- 附带我们编写的 YYAS 汇编器，能够实现 ys 到 yo 的编译
-
-
----
-
-<div style="page-break-after: always;"></div>
-
+<h2 id="二、使用方式及功能详解"><a href="#二、使用方式及功能详解" class="headerlink" title="二、使用方式及功能详解"></a>二、使用方式及功能详解</h2><h3 id="1-具体使用方法"><a href="#1-具体使用方法" class="headerlink" title="1. 具体使用方法"></a>1. 具体使用方法</h3><p>(见项目目录下 README.md)</p>
+<h3 id="2-功能详解"><a href="#2-功能详解" class="headerlink" title="2. 功能详解"></a>2. 功能详解</h3><ul>
+<li>主体功能介绍图</li>
+</ul>
+<p><img src="https://s3.ax1x.com/2021/01/06/sAv8Gn.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<p><img src="https://s3.ax1x.com/2021/01/06/sAv3Ps.png" srcset="/CsBlog/img/loading.gif" alt></p>
+<ul>
+<li>当前指令模块</li>
+</ul>
+<p><img src="https://s3.ax1x.com/2021/01/06/sAvV2t.png" srcset="/CsBlog/img/loading.gif" style="width:250px"></p>
+<p>当前指令显示我们当前运行到的指令 (PC 所指)，并包含前后文2条指令的信息。</p>
+<p><strong>隐藏断点设置</strong></p>
+<p>为了前端的布局美观和统一性，断点设置被隐藏进了当前指令卡片中，点击当前指令卡片即可设置断点。</p>
+<p><img src="https://s3.ax1x.com/2021/01/06/sAvE8I.png" srcset="/CsBlog/img/loading.gif" style="width:400px"></p>
+<p>可以任意设置增删断点</p>
+<ul>
+<li><strong>终端字符及彩色矩阵输出</strong></li>
+</ul>
+<p>根据后端的内存映射，我们可以让终端输出字符以及彩色矩阵。</p>
+<p><img src="https://s3.ax1x.com/2021/01/06/sAvJx0.png" srcset="/CsBlog/img/loading.gif" style="width:300px"></p>
+<ul>
+<li>附带我们编写的 YYAS 汇编器，能够实现 ys 到 yo 的编译</li>
+</ul>
+<hr>
 <h2 id="三、代码详解"><a href="#三、代码详解" class="headerlink" title="三、代码详解"></a>三、代码详解</h2><h3 id="1-前端代码架构分析"><a href="#1-前端代码架构分析" class="headerlink" title="1. 前端代码架构分析"></a>1. 前端代码架构分析</h3><ul>
 <li>前端代码架构图</li>
 </ul>
