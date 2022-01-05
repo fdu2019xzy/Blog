@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>NLP 基于Prompt的小样本学习</title>
+    <link href="/2022/01/06/NLP/nlp-prompt/"/>
+    <url>/2022/01/06/NLP/nlp-prompt/</url>
+    
+    <content type="html"><![CDATA[<object data="/pdf/Prompt.pdf" type="application/pdf" width="100%" height="1024px"></object>]]></content>
+    
+    
+    <categories>
+      
+      <category>NLP</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Prompt</tag>
+      
+      <tag>SST</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>NLP 名称实体标注任务 (NER)</title>
     <link href="/2021/12/14/NLP/nlp-ner/"/>
     <url>/2021/12/14/NLP/nlp-ner/</url>
